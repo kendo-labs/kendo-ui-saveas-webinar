@@ -1,5 +1,6 @@
-** For images to be exported files must run from a server (i.e. local file system paths will not work) ***
 
 * Exporting image: image.html or https://jsbin.com/segaxi/edit?js,output
 * Exporting text: text.html or https://jsbin.com/tonire/edit?js,output
 * Exporting pdf: pdf.html or https://jsbin.com/nixefu/edit?js,output
+
+*** For images to be exported HTML files must run from a server (i.e. local file system paths will not work) ***
