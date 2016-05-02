@@ -1,0 +1,40 @@
+body {
+  font: 300 14px/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #555;
+  background: #f9f9f9;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.contact {
+  margin: 100px auto;
+  background: #fff;
+  max-width: 300px;
+  border: 1px solid #e5e5e5;
+  padding: 15px;
+  border-radius: 3px;
+}
+.contact img {
+  width: 100%;
+  border-radius: 3px;
+}
+.contact h1 {
+  text-align: center;
+  margin: 0 0 10px;
+}
+.contact p {
+  margin: 15px 0 10px;
+}
+.contact a {
+  width: 100%;
+  display: block;
+  padding: 10px 0;
+  margin: 10px 0 0;
+  text-decoration: none;
+  text-align: center;
+  background: #338dbc;
+  border-radius: 3px;
+  color: #fff;
+}

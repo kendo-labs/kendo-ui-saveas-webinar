@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Kendo UI: Exports
+    </title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.material.min.css" />
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.1.412/js/jszip.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.all.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.1.412/js/pako_deflate.min.js"></script>
+  </head>
+  <body>
+
+    <div id="example">
+      <div id="grid"></div>
+    </div>
+    <script>
+    $('#grid').kendoGrid({
+      toolbar: ['pdf', 'excel'],
+      excel: {
+        fileName: 'Police_Data_UK.xlsx',
+        proxyURL: '//demos.telerik.com/kendo-ui/service/export',
+        allPages: true
+      },
+      pdf: {
+        fileName: 'Police_Data_UK.pdf',
+        proxyURL: '//demos.telerik.com/kendo-ui/service/export',
+        allPages: true
+      },
+      dataSource: {
+        transport: {
+          read: '//data.police.uk/api/crimes-street/all-crime?poly=52.268,0.543:52.794,0.238:52.130,0.478&date=2013-01'
+        },
+        serverPaging: false,
+        dataType: 'JSON',
+        pageSize: 10
+      },
+      sortable: true,
+      pageable: true,
+      resizable: true,
+      columns: [{
+        width: 300,
+        title: 'Category',
+        field: 'category'
+      },{
+        width: 300,
+        title: 'Street name',
+        field: 'location.street.name'
+      },{
+        width: 300,
+        title: 'Outcome status',
+        template: `
+          # if (data.outcome_status !== null) { #
+            #: data.outcome_status.category #
+          # } #
+        `
+      }]
+    });
+    </script>
+  </body>
+</html>
