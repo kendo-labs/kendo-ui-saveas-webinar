@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body style="margin:50px">
+    <!-- https://github.com/eligrey/Blob.js/ -->
+    <!-- http://caniuse.com/#search=Blob -->
+    <script src="https://cdn.rawgit.com/eligrey/Blob.js/0cef2746414269b16834878a8abc52eb9d53e6bd/Blob.js"></script>
+    <!-- https://github.com/eligrey/FileSaver.js -->
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/62d219a0fac54b94cd4f230e7bfc55aa3f8dcfa4/FileSaver.js"></script>
+
+    <div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-default" id="save" type="button">Save As Text Doc</button>
+      </span>
+        <input type="text" class="form-control" id="fileName" placeholder="enter a file name">
+    </div>
+    <!-- /input-group -->
+    <hr>
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Date registered</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Donna R. Folse</td>
+                <td>2012/05/06</td>
+                <td>Editor</td>
+                <td><span class="label label-success">Active</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Emily F. Burns</td>
+                <td>2011/12/01</td>
+                <td>Staff</td>
+                <td><span class="label label-danger">Banned</span></td>
+            </tr>
+            <tr>
+                <td>Andrew A. Stout</td>
+                <td>2010/08/21</td>
+                <td>User</td>
+                <td><span class="label label-info">Inactive</span></td>
+            </tr>
+            <tr>
+                <td>Mary M. Bryan</td>
+                <td>2009/04/11</td>
+                <td>Editor</td>
+                <td><span class="label label-warning">Pending</span></td>
+            </tr>
+            <tr>
+                <td>Mary A. Lewis</td>
+                <td>2007/02/01</td>
+                <td>Staff</td>
+                <td><span class="label label-success">Active</span></td>
+            </tr>
+        </tbody>
+    </table>
+	<h4>https://jsbin.com/tonire/edit</h4>
+	    <ul>
+	    <li><a href="https://github.com/eligrey/Blob.js">Blob.js</a></li>
+	    <li><a href="https://github.com/eligrey/FileSaver.js">FileSaver.js</a></li>
+	  </ul>
+</body>
+<script>
+document.querySelector('#save').addEventListener('click', function() {
+
+    var text = document.querySelector('table').textContent;
+    var fileName = document.querySelector('#fileName').value;
+
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+
+    saveAs(blob, fileName || 'untitled' + '.txt');
+
+}, false);
+</script>
+</html>

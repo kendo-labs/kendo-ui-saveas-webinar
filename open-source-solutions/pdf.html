@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body style="margin:50px;max-width:800px">
+
+    <!-- https://github.com/MrRio/jsPDF -->
+    <script src="https://dl.dropboxusercontent.com/u/2026291/jspdf.min.js"></script>
+
+     <!-- https://github.com/niklasvh/html2canvas -->
+    <script src="https://dl.dropboxusercontent.com/u/2026291/html2canvas.js"></script>
+    <!-- https://github.com/stefanpenner/es6-promise -->
+    <script src="https://dl.dropboxusercontent.com/u/2026291/es6-promise.min.js"></script>
+
+
+    <div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-default" id="save" type="button">Save As PDF</button>
+      </span>
+        <input type="text" class="form-control" id="fileName" placeholder="enter a file name">
+    </div>
+    <!-- /input-group -->
+    <hr>
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Image</th>
+                <th>Date registered</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Donna R. Folse</td>
+                <td><img src="people.png"/></td>
+                <td>2012/05/06</td>
+                <td>Editor</td>
+                <td><span class="label label-success">Active</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Emily F. Burns</td>
+                <td><img src="people.png"/></td>
+                <td>2011/12/01</td>
+                <td>Staff</td>
+                <td><span class="label label-danger">Banned</span></td>
+            </tr>
+            <tr>
+                <td>Andrew A. Stout</td>
+                <td><img src="people.png"/></td>
+                <td>2010/08/21</td>
+                <td>User</td>
+                <td><span class="label label-info">Inactive</span></td>
+            </tr>
+            <tr>
+                <td>Mary M. Bryan</td>
+                <td><img src="people.png"/></td>
+                <td>2009/04/11</td>
+                <td>Editor</td>
+                <td><span class="label label-warning">Pending</span></td>
+            </tr>
+            <tr>
+                <td>Mary A. Lewis</td>
+                <td><img src="people.png"/></td>
+                <td>2007/02/01</td>
+                <td>Staff</td>
+                <td><span class="label label-success">Active</span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+document.querySelector('#save').addEventListener('click', function() {
+
+    var fileName = document.querySelector('#fileName').value;
+
+    var table = document.querySelector('table');
+
+    html2canvas(table,{background:'#fff'}).then(function(canvas) {
+
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        var pdf = new jsPDF();
+        pdf.addImage(image, 'PNG', 0, 0);
+        pdf.save(fileName||'untitled' + '.pdf');
+
+    });
+
+}, false);
+</script>
+</html>
